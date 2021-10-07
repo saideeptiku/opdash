@@ -22,6 +22,7 @@ log.basicConfig(level=log.INFO)
 ##########################################
 #     constants have their own types     #
 ##########################################
+@dataclass(frozen=True)
 class OP_TYPE:
     """
     Option types can be a call or put
@@ -50,7 +51,7 @@ class OP_TYPE:
     def check_type(txt: str):
         return txt in (OP_TYPE.CALL, OP_TYPE.PUT)
 
-
+@dataclass(frozen=True)
 class TR_TYPE:
     """
     The transaction types are Buy or Sell
@@ -256,12 +257,13 @@ def black_scholes(
 ) -> dict:
     """
     Parameters:
+    ----------
     t : Time to expiration in days
     r : Risk free rate in percentage
     v : Volatility in percentage
     K : Excercise Price
     St: Current Stock Price
-    type: Type of option 'c' for call 'p' for put
+    op_type: Type of option 'c' for call 'p' for put
     default: 'c'
     """
     raise NotImplementedError
